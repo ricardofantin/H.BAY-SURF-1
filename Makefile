@@ -4,11 +4,11 @@
 # Loads math library.  
 LIBS = -lm
 GET = get
-CFLAGS = -Wall -O3 -DNO_DEBUG -march=pentium4 -mfpmath=sse -mmmx -msse -msse2 -msse3 -ansi
+CFLAGS = -Wall -O3 -DNO_DEBUG -mfpmath=sse -mmmx -msse -msse2 -msse3 -ansi
 DEPEND= makedepend $(CFLAGS)
 
-CC = g++-4.0.2
-CXX = g++-4.0.2
+CC = g++
+CXX = g++
 
 # --------------------- Code modules ----------------------------
 
