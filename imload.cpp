@@ -83,6 +83,7 @@ Image *ImLoad::readImage(const char *fn){
     cerr << "Input image has to be PGM format" << endl;
     exit(0);
   }
+  //[TODO] maybe maximun value should be much bigger
 
   // Get the image intensities and normalise to 0 - 1.
   imfile.get();

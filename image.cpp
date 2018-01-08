@@ -38,6 +38,14 @@ Image::Image(const int w, const int h){
 	_ref = false;
 }
 
+//! Constructor from existing double array
+Image::Image(double **pixels, int w, int h){
+	_height = h;
+	_width = w;
+	_ref = true;
+	_pixels = pixels;
+}
+
 //! constructor for integral image
 //[TODO] doubleImSize not used, is to double width and height?
 Image::Image(Image *im, bool doubleImSize){
@@ -50,7 +58,6 @@ Image::Image(Image *im, bool doubleImSize){
 		}
 	}
 }
-
 
 Image::~Image(){
 	if(_ref == false)
