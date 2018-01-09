@@ -10,6 +10,13 @@ Surf::Surf(){
 //! Constructor with parameters
 //[TODO] usurf and insi not used yet, what they are?
 //[TODO] I suspect insi is the number of octaves...
+//Taken from main.cpp
+// Initialise the SURF descriptor
+//  Surf des(&iimage, /* pointer to integral image */  
+//           doubleImageSize, /* double image size flag */ 
+//           upright, /* rotation invariance or upright */
+//           extended, /* use the extended descriptor */
+//           indexSize /* square size of the descriptor window (default 4x4)*/);
 Surf::Surf(Image *im, bool dbl, bool usurf, 
          bool ext, int insi){
 	_iimage = im;
@@ -19,20 +26,28 @@ Surf::Surf(Image *im, bool dbl, bool usurf,
 
 //! Destructor
 Surf::~Surf(){
-	
+	//free(
 }
-/*
+
 //! Get length of the descriptor vector
-int getVectLength();
+int Surf::getVectLength(){
+	return _VecLength;
+}
 
-    //! set Ipoint for which a descriptor has to be computed
-    void setIpoint(Ipoint *ipt);
+//! set Ipoint for which a descriptor has to be computed
+void Surf::setIpoint(Ipoint *ipt){
+	_current = ipt;
+}
 
-    //! Assign reproducible orienation
-    void assignOrientation();
+//! Assign reproducible orientaion
+void Surf::assignOrientation(){
+	//[TODO]
+}
 
-    //! Compute the robust features
-    void makeDescriptor();
+//! Compute the robust features
+void Surf::makeDescriptor(){
+	//use the ipoint
+}
 
   protected:
     //! Create the vector 
@@ -83,4 +98,3 @@ int getVectLength();
 
 }
 
-#*/

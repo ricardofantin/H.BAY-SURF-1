@@ -53,7 +53,7 @@ class Surf {
     //! set Ipoint for which a descriptor has to be computed
     void setIpoint(Ipoint *ipt);
 
-    //! Assign reproducible orienation
+    //! Assign reproducible orientaion
     void assignOrientation();
 
     //! Compute the robust features

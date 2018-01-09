@@ -51,6 +51,7 @@ Image::Image(double **pixels, int w, int h){
 Image::Image(Image *im, bool doubleImSize){
 	allocPixels(im->getHeight(), im->getWidth());
 	double sum = 0;
+	//double p[][im->getWidth()] = _pixels;
 	for(int i = 0; i < im->getHeight(); i++){
 		for(int j = 0; j < im->getWidth(); j++){
 			sum += im->getPix(j, i);
