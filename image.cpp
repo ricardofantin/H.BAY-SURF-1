@@ -82,5 +82,29 @@ int Image::getHeight(){
 	return _pixels;
 }*/
 
+  /* Filters
+   * Y-direction X-Direction XY-Direction
+   * 001111100   000000000   000000000
+   * 001111100   000000000   01110-1-0
+   * 001111100   111-2-111   01110-1-0
+   * 00-2--200   111-2-111   01110-1-0
+   * 00-2--200   111-2-111   000000000
+   * 00-2--200   111-2-111   0-1-01110
+   * 001111100   111-2-111   0-1-01110
+   * 001111100   000000000   0-1-01110
+   * 001111100   000000000   000000000
+   */
+double Image::getHessian(int r, int c){
+	double y = getRectangleSum(r-4, c-2, 3, 5) -2*getRectangleSum(r-1, c-2, 3, 5) + getRectangleSum(r+2, c-2, 3, 5);
+	double x = getRectangleSum(r-2, c-4, 5, 3) -2*getRectangleSum(r-2, c-1, 5, 3) + getRectangleSum(r-2, c+2, 5, 3);
+	double xy = getRectangleSum(r-3, c-3, 3, 3) + getRectangleSum(r+1, c+1, 3, 3) - getRectangleSum(r-3, c+1, 3, 3) - getRectangleSum(r+1, c-3, 3, 3);
+	det = x*y - 0.81*xy+xy;
+	return det;
+}
+
+double Image::getRectangleSum(int r, int c, int height, int width){
+	return value = _pixels[r-1][c-1] + _pixels[r-1+height][c-1+width] - _pixels[r-1+width][c-1] - _pixels[r-1][c-1+width];
+}
+
 }
 

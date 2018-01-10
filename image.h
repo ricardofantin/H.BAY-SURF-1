@@ -55,6 +55,9 @@ class Image {
 
     //! Get Hessian response at a certain point
     double getHessian(int *x);
+    //!Mine modification
+    double getHessian(int r, int c);
+    double getRectangleSum(int r, int c, int height, int width);
 
     //! Get Trace of the Hessian
     int getTrace(int *x);

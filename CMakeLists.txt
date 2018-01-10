@@ -5,7 +5,7 @@ set(CMAKE_BUILD_TYPE debug)
 add_definitions(-DGRAPHICS)
 
 
-set(surfLIB main.cpp imload.cpp os_mapping.cpp image.cpp surf.cpp image.h fasthessian.h ipoint.h surf.h imload.h ipoint.h)
+set(surfLIB main.cpp imload.cpp os_mapping.cpp image.cpp surf.cpp fasthessian.cpp image.h fasthessian.h ipoint.h surf.h imload.h ipoint.h)
 add_library(libSurf.so STATIC ${surfLIB})
 
 
