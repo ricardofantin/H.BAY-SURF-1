@@ -98,12 +98,12 @@ double Image::getHessian(int r, int c){
 	double y = getRectangleSum(r-4, c-2, 3, 5) -2*getRectangleSum(r-1, c-2, 3, 5) + getRectangleSum(r+2, c-2, 3, 5);
 	double x = getRectangleSum(r-2, c-4, 5, 3) -2*getRectangleSum(r-2, c-1, 5, 3) + getRectangleSum(r-2, c+2, 5, 3);
 	double xy = getRectangleSum(r-3, c-3, 3, 3) + getRectangleSum(r+1, c+1, 3, 3) - getRectangleSum(r-3, c+1, 3, 3) - getRectangleSum(r+1, c-3, 3, 3);
-	det = x*y - 0.81*xy+xy;
+	double det = x*y - 0.81*xy+xy;
 	return det;
 }
 
 double Image::getRectangleSum(int r, int c, int height, int width){
-	return value = _pixels[r-1][c-1] + _pixels[r-1+height][c-1+width] - _pixels[r-1+width][c-1] - _pixels[r-1][c-1+width];
+	return _pixels[r-1][c-1] + _pixels[r-1+height][c-1+width] - _pixels[r-1+width][c-1] - _pixels[r-1][c-1+width];
 }
 
 }

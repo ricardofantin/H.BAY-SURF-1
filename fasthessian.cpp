@@ -3,14 +3,14 @@
 using namespace surf;
 
 //! Destructor
-FastHessian::~FastHessian();
+//FastHessian::~FastHessian();
 
 //! Constructor with parameters
-FastHessian::FastHessian(Image *im, std::vector< Ipoint >& ip, double thres = 0.2, bool doub = false, 
-                short int initMasksize = 9, short int samplingStep = 2,
-                short int octaves = 4){
-	_Iimage = im;
+FastHessian::FastHessian(Image *im, std::vector<Ipoint> ip, double thres, bool doub, 
+                short int initMasksize, short int samplingStep,
+                short int octaves){
 	_ipts = ip;
+	_Iimage = im;
 	_width = im->getWidth();
 	_height = im->getHeight();
 	_threshold = thres;
@@ -40,24 +40,38 @@ void FastHessian::getInterestPoints(){
 	int border = _initLobe + 1;
 	for(int r = border + 1; r < _height - border; r++){
 		for(int c = border + 1; c < _width - border; c++){
+			Ipoint ip;
+			ip.allocIvec(12);
+			calculateIpoint(r, c, &ip);
 			//need get 3 values horizontal vertical and diagonal
 			//int v = _Iimage.getPix(c, r);
-			double hessian = _Iimage.getHessian(r, c);
-			if (hessian > _threshold){
+			//double hessian = _Iimage.getHessian(r, c);
+/*			if (hessian > _threshold){
 				Ipoint ip();
 				ip.allocIvec(3);
 				ip.ivec[0] = 0;
 				ip.ivec[1] = 0;
 				ip.ivec[2] = 0;
 				_ipts.push_back(ip);
-			}
+			}*/
 		}
 	}
 }
 
+void FastHessian::calculateIpoint(int r, int c, Ipoint *ip){
+	Image *i = _Iimage;
+	double x, y, xy;
+	y = i->getRectangleSum(r-4, c-2, 3, 5) -2*i->getRectangleSum(r-1, c-2, 3, 5) + i->getRectangleSum(r+2, c-2, 3, 5);
+	x = i->getRectangleSum(r-2, c-4, 5, 3) -2*i->getRectangleSum(r-2, c-1, 5, 3) + i->getRectangleSum(r-2, c+2, 5, 3);
+	xy = i->getRectangleSum(r-3, c-3, 3, 3) + i->getRectangleSum(r+1, c+1, 3, 3) - i->getRectangleSum(r-3, c+1, 3, 3) - i->getRectangleSum(r+1, c-3, 3, 3);
+	ip->ivec[0] = x;
+	ip->ivec[1] = y;
+	ip->ivec[2] = xy;
+}
+
     //! Create a new ipoint at location (x, y),  at a certain scale 
     //! and corner response strength
-    void makeIpoint(double x, double y, double scale, double strength=0);
+    void makeIpoint(double x, double y, double scale, double strength);
 
 //  protected:
 //! Allocate scale layers for one octave

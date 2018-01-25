@@ -30,11 +30,13 @@
 #define __FASTHESSIAN_H
 
 #include <vector>
+#include "image.h"
+#include "ipoint.h"
 
 namespace surf {
 
-class Ipoint;
-class Image;
+//class Ipoint;
+//class Image;
 
 class FastHessian {
   public:
@@ -42,7 +44,7 @@ class FastHessian {
     ~FastHessian();
 
     //! Constructor with parameters
-    FastHessian(Image *im, std::vector< Ipoint >& ip, double thres = 0.2, bool doub = false, 
+    FastHessian(Image *im, std::vector< Ipoint > ip, double thres = 0.2, bool doub = false, 
                 short int initMasksize = 9, short int samplingStep = 2,
                 short int octaves = 4);
 
@@ -85,7 +87,7 @@ class FastHessian {
     bool _doubled;
 
     //! Reference to vector of interest points passed from outside
-    std::vector< Ipoint >& _ipts;
+    std::vector< Ipoint > _ipts;
 
     //! Initial lobe size for the second derivative in one direction
     //! default is 3
@@ -106,6 +108,10 @@ class FastHessian {
 
     //! Result of fitting quadratic
     double _offset[3];
+
+    //! New function to calculate all values from point
+    void calculateIpoint(int r, int c, Ipoint *ip);
+
 };
 
 }

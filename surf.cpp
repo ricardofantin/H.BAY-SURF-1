@@ -49,7 +49,7 @@ void Surf::makeDescriptor(){
 	//use the ipoint
 }
 
-  protected:
+/*  protected:
     //! Create the vector 
     void createVector(double scale, 
                       double row, double col);
@@ -96,5 +96,5 @@ void Surf::makeDescriptor(){
     double _lookup1[83], _lookup2[40];
 };
 
-}
+}*/
 
